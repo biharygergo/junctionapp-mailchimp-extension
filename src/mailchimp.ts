@@ -66,7 +66,9 @@ const updateContactTags = (hash: string) => {
 };
 
 export const onRegistration = async (registrationData: RegistrationData) => {
-  console.log(`Syncing data with Mailchimp for e-mail: ${registrationData.answers?.email}`);
+  console.log(
+    `Syncing data with Mailchimp for e-mail: ${registrationData.answers?.email}`
+  );
 
   if (
     !registrationData?.answers?.firstName ||
@@ -77,7 +79,7 @@ export const onRegistration = async (registrationData: RegistrationData) => {
       "Invalid or incomplete data received, aborting Mailchimp sync...",
       registrationData
     );
-    return;
+    throw new Error("Invalid data received.");
   }
 
   const emailHash = createHash("md5")
